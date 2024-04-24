@@ -48,7 +48,11 @@ function App() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(process.env.FA_BACKEND_CANISTER_ID)
+
+    // console.log(process.env.FA_BACKEND_CANISTER_ID)
+    // identityProvider: "http://be2us-64aaa-aaaaa-qaabq-cai.localhost:4943/",
+    // identityProvider: "http://rdmx6-jaaaa-aaaaa-aaadq-cai.icp0.io",
+
 
     try {
       let authClient = await AuthClient.create();
@@ -60,9 +64,12 @@ function App() {
       });
       const identity = authClient.getIdentity();
       const agent = new HttpAgent({ identity });
-      actor = await createActor('bkyz2-fmaaa-aaaaa-qaaaq-cai', {
+      actor = createActor('bkyz2-fmaaa-aaaaa-qaaaq-cai', {
         agent,
       });
+
+      // console.log(`Agent: ${agent}`);
+
     } catch (error) {
       console.error('Login failed:', error);
     }
